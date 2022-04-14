@@ -109,4 +109,20 @@ router.get("/search/:searchString", (req, res, next) => {
         })
     });
 })
+router.get("/address/:searchString", (req, res, next) => {
+    const searchString = req.params.searchString;
+    Student.find({ address: searchString }).exec().then((docs) => {
+        if (docs.length > 0) {
+            console.log(doc);
+            res.status(200).json(docs);
+        } else {
+            res.status(500).json({ message: "nothing" });
+        }
+    }).catch((err) => {
+        console.log(err);
+        res.status(500).json({
+            error: err,
+        })
+    });
+})
 module.exports = router;
