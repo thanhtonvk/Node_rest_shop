@@ -4,7 +4,7 @@ const Student = require("../models/student");
 const mongoose = require("mongoose");
 
 router.get("/", (req, res, next) => {
-    Product.find()
+    Student.find()
         .exec()
         .then((docs) => {
             if (docs.length > 0) {
