@@ -4,6 +4,7 @@ const app = express();
 const port = process.env.PORT || 3000;
 const productRoutes = require("./api/routes/product");
 const orderRoutes = require("./api/routes/orders");
+const studentRoutes = require("./api/routes/students")
 const bodyParser = require("body-parser");
 
 var mongoose = require("mongoose");
@@ -26,7 +27,7 @@ app.use(bodyParser.json());
 
 app.use("/product", productRoutes);
 app.use("/orders", orderRoutes);
-
+app.use("/students", studentRoutes);
 app.use((req, res, next) => {
     res.header("Access-Control-Allow-Origin", "*");
     res.header(
