@@ -6,3 +6,4 @@ const studentSchema = mongoose.Schema({
     address: { type: String, required: true },
     dateofbirth: { type: String, required: true },
 })
+module.exports = mongoose.model("Student", studentSchema);
