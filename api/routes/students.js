@@ -8,16 +8,19 @@ router.get("/", (req, res, next) => {
         .exec()
         .then((docs) => {
             if (docs.length > 0) {
-                console.log(doc);
+                console.log(docs);
                 res.status(200).json(docs);
             } else {
-                res.status(500).json({ message: "nothing" });
+                res.status(500).json({
+                    message: "nothing",
+                });
             }
-        }).catch((err) => {
+        })
+        .catch((err) => {
             console.log(err);
             res.status(500).json({
                 error: err,
-            })
+            });
         });
 });
 router.post("/", (req, res, next) => {
@@ -89,5 +92,21 @@ router.delete("/:studentID", (req, res, next) => {
                 error: err
             })
         })
+})
+router.get("/search/:searchString", (req, res, next) => {
+    const searchString = req.params.searchString;
+    Student.find({ name: searchString }).exec().then((docs) => {
+        if (docs.length > 0) {
+            console.log(doc);
+            res.status(200).json(docs);
+        } else {
+            res.status(500).json({ message: "nothing" });
+        }
+    }).catch((err) => {
+        console.log(err);
+        res.status(500).json({
+            error: err,
+        })
+    });
 })
 module.exports = router;
